@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 245 243 238;
+  --surface: 255 255 255;
+  --ink: 20 20 22;
+  --muted: 106 104 98;
+  --line: 224 219 208;
+  --signal: 158 110 21;
+  --signal-soft: 158 110 21;
+  --cursor-scale: 1;
+}
+
+.dark {
+  --canvas: 9 9 10;
+  --surface: 17 17 19;
+  --ink: 240 239 235;
+  --muted: 150 148 144;
+  --line: 41 41 44;
+  --signal: 232 185 77;
+  --signal-soft: 232 185 77;
+}
+
+* {
+  border-color: rgb(var(--line));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--canvas));
+  color: rgb(var(--ink));
+  font-family: var(--font-body);
+  transition: background-color 0.4s var(--ease-signature, ease), color 0.4s ease;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--signal) / 0.25);
+  color: rgb(var(--ink));
+}
+
+/* ---------- Grain texture ---------- */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("/grain.svg");
+  background-size: 180px;
+}
+
+/* ---------- Scroll progress ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgb(var(--signal));
+  transform-origin: 0%;
+  z-index: 70;
+}
+
+/* ---------- Custom cursor ---------- */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(var(--ink));
+  pointer-events: none;
+  z-index: 80;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  margin-left: -17px;
+  margin-top: -17px;
+  border-radius: 999px;
+  border: 1px solid rgb(var(--ink) / 0.5);
+  pointer-events: none;
+  z-index: 79;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: rgb(var(--ink));
+  background: rgb(var(--ink) / 0.02);
+  backdrop-filter: blur(1px);
+  will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
+/* ---------- Spotlight ---------- */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    600px circle at var(--spot-x, 50%) var(--spot-y, 20%),
+    rgb(var(--signal) / 0.06),
+    transparent 70%
+  );
+}
+
+/* ---------- Marquee ---------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+/* ---------- Utility: eyebrow label ---------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(var(--signal));
+}
+
+.hairline {
+  border-top: 1px solid rgb(var(--line));
+}
+
+/* ---------- Focus states ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgb(var(--signal));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--canvas));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border-radius: 999px;
+}
