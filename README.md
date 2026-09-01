@@ -93,4 +93,3 @@ your Vercel project settings — `.env.local` is not committed to git.
 - Route-level page transitions (this is a single-page portfolio, so there are no
   route changes to transition between)
 - Konami-code easter egg
-hello
