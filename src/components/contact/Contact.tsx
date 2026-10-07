@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, AlertCircle, Send, Loader2, Mail, Github, Linkedin, Copy } from "lucide-react";
+import { Check, AlertCircle, Send, Loader2, Mail, Github, Linkedin, Copy, Phone } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -125,6 +125,14 @@ export default function Contact() {
                   </AnimatePresence>
                 </span>
               </button>
+
+              <a
+                href={`tel:${site.phone}`}
+                className="flex items-center gap-3 font-mono text-sm text-muted transition-colors hover:text-ink"
+              >
+                <Phone size={16} className="text-signal" />
+                {site.phone}
+              </a>
 
               <div className="flex gap-3">
                 <a

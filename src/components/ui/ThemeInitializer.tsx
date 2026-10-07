@@ -9,8 +9,7 @@ export default function ThemeInitializer() {
 
   useEffect(() => {
     const stored = window.localStorage.getItem("forhad-theme") as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial: Theme = stored ?? (prefersDark ? "dark" : "light");
+    const initial: Theme = stored ?? "dark";
     document.documentElement.classList.toggle("dark", initial === "dark");
     dispatch(hydrateTheme(initial));
   }, [dispatch]);

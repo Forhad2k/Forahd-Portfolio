@@ -51,6 +51,22 @@ export default function ProjectModal({
               </p>
             )}
 
+            {project.image && (
+              <div className="mt-6 overflow-auto rounded-2xl border border-line bg-surface">
+                <img
+                  src={project.image}
+                  alt={`${project.name} preview`}
+                  className="min-h-[220px] w-full object-contain md:min-h-[280px]"
+                />
+              </div>
+            )}
+
+            {project.adminNote && (
+              <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 font-mono text-[11px] text-amber-300">
+                {project.adminNote}
+              </p>
+            )}
+
             <div className="mt-6 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
                 <span

@@ -23,14 +23,21 @@ export default function Skills() {
                   <h3 className="font-display text-xl">{group.label}</h3>
                 </div>
                 <ul className="space-y-2.5">
-                  {group.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="text-sm text-muted transition-colors duration-200 hover:text-ink"
-                    >
-                      {skill}
-                    </li>
-                  ))}
+                  {group.skills.map((skill) => {
+                    const Icon = skill.icon;
+
+                    return (
+                      <li
+                        key={skill.name}
+                        className="flex items-center gap-2.5 text-sm text-muted transition-colors duration-200 hover:text-ink"
+                      >
+                        <span className="flex h-8 w-8 items-center justify-center rounded-md border border-line bg-card/60">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <span>{skill.name}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </Reveal>

@@ -5,6 +5,7 @@ export const site = {
   supporting:
     "Full-stack developer specializing in Next.js, Node.js, MongoDB, PostgreSQL and Prisma — with production experience shipping Squarespace and Shopify sites for real clients.",
   email: "fh594694@gmail.com",
+  phone: "+8801317416783",
   github: "https://github.com/Forhad2k",
   linkedin: "https://linkedin.com/in/forhad-hossain",
   location: "Dhaka, Bangladesh",
