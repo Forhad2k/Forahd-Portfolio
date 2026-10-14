@@ -7,6 +7,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Spotlight from "@/components/ui/Spotlight";
 import CommandPalette from "@/components/ui/CommandPalette";
+import PageLoader from "@/components/ui/PageLoader";
 import { site } from "@/data/site";
 
 const display = Space_Grotesk({
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${display.variable} ${body.variable} ${mono.variable} font-body`}>
         <Providers>
           <ThemeInitializer />
+          <PageLoader />
           <div className="grain" />
           <Spotlight />
           <ScrollProgress />

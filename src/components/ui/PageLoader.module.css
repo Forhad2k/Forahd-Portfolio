@@ -1,0 +1,118 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #09090a;
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+
+.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.loadingText {
+  margin-left: 10px;
+  color: #fff;
+  font-size: 14pt;
+  font-weight: 600;
+}
+
+.dot {
+  margin-left: 3px;
+  animation: blink 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.loadingBarBackground {
+  --height: 30px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: 200px;
+  height: var(--height);
+  padding: 5px;
+  border-radius: calc(var(--height) / 2);
+  background-color: #212121;
+  box-shadow: #0c0c0c -2px 2px 4px 0 inset;
+}
+
+.loadingBar {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  width: 0;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(0deg, #de4a0f 0%, #f9c74f 100%);
+  animation: loading 4s ease-out forwards;
+}
+
+.whiteBarsContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.whiteBar {
+  width: 10px;
+  height: 45px;
+  rotate: 45deg;
+  opacity: 0.3;
+  background: linear-gradient(-45deg, #fff 0%, rgb(255 255 255 / 0%) 70%);
+}
+
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+
+  80%,
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .loadingBar {
+    animation: none;
+  }
+
+  .loadingBar {
+    width: 100%;
+  }
+}
